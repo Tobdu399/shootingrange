@@ -4,7 +4,9 @@ let target;
 let font;
 let font_bold;
 
+let song;
 let gunsound;
+let gunempty;
 let bullethit;
 let reload;
 let reloading = false;
@@ -22,8 +24,10 @@ let score = 0;
 let time = 60;
 
 function preload() {
+	song = loadSound('SFX/song.mp3');
 	sight = loadImage('Pictures/sight.png');
 	gunsound = loadSound('SFX/gunsound.mp3');
+	gunempty = loadSound('SFX/gunempty.mp3');
 	bullethit = loadSound('SFX/bullethit.mp3');
 	reload = loadSound('SFX/reload.mp3');
 	font = loadFont('Fonts/font.ttf');

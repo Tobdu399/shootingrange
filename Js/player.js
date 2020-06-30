@@ -9,7 +9,6 @@ function Player()
     noFill();
     stroke(0);
     strokeWeight(3);
-    //ellipse(this.x, this.y, this.r, this.r);
     image(sight, this.x-this.r/2, this.y-this.r/2, this.r, this.r);
   }
 }
@@ -28,7 +27,7 @@ function keyPressed() {
         if (bulletsFull > bulletsAmount) {
           bulletsAmount += 1;
         }
-      }, 1800/12);
+      }, 1500/12);
 
       setTimeout(() => {
         clearInterval(reloadAnim);
@@ -36,7 +35,7 @@ function keyPressed() {
         bulletsAmount = bulletsFull;
       }, 2100);   // Reloading sound's duration is about 2 seconds
     }
-  } else {game = true; runTimer()}
+  } else {game = true; runTimer(); song.loop()}
 }
 
 function mouseClicked() {
@@ -58,5 +57,9 @@ function mouseClicked() {
 
       bulletsAmount--;
     }
-  } else {game = true; runTimer()}
+  } else {game = true; runTimer(); song.loop()}
+
+  if (bulletsAmount <= 0 || reloading) {
+    gunempty.play();
+  }
 }
