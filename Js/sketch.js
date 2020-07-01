@@ -17,6 +17,7 @@ let ground;
 let sky;
 let targetImg;
 let bulletImg;
+let reloadImg;
 
 let game = false;
 let gameover = false;

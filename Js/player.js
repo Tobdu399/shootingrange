@@ -19,29 +19,21 @@ function keyPressed() {
   }
 
   if (game && time != 0) {
-    if (keyCode === 82 && bulletsAmount != bulletsFull) {
-      reloading = true;
-      reload.play();
-
-      let reloadAnim = setInterval(() => {
-        if (bulletsFull > bulletsAmount) {
-          bulletsAmount += 1;
-        }
-      }, 1500/12);
-
-      setTimeout(() => {
-        clearInterval(reloadAnim);
-        reloading = false;
-        bulletsAmount = bulletsFull;
-      }, 2100);   // Reloading sound's duration is about 2 seconds
+    if (keyCode === 82 && reloading === false) {
+      reloadGun();
     }
   } else {game = true; runTimer(); song.loop()}
 }
+
+
 
 function mouseClicked() {
   if (mouseX > width-50 && mouseX < width-20
       && mouseY > 10 && mouseY < 50) {
     help()
+  } else if (reloading === false && mouseX > width-110 && mouseX < width-80
+            && mouseY > 5 && mouseY < 60) {
+    reloadGun();
   }
 
   if (game && !time <= 0) {
@@ -62,4 +54,25 @@ function mouseClicked() {
   if (bulletsAmount <= 0 || reloading) {
     gunempty.play();
   }
+}
+
+
+
+function reloadGun() {
+  if (bulletsAmount != bulletsFull) {
+    reloading = true;
+    reload.play();
+
+    let reloadAnim = setInterval(() => {
+      if (bulletsFull > bulletsAmount) {
+        bulletsAmount += 1;
+      }
+    }, 1500/12);
+
+    setTimeout(() => {
+      clearInterval(reloadAnim);
+      reloading = false;
+      bulletsAmount = bulletsFull;
+    }, 2100);   // Reloading sound's duration is about 2 seconds
+  } else {return}
 }

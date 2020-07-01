@@ -7,11 +7,15 @@ function runGame() {
   text("Time: " + time, 10, 30)
   text("Score: " + score, 10, 55);
 
+	textFont(NORMAL);
+	textSize(35);
+	text("⟲", width-100, 41);
+
+	textSize(30);
   textFont(font_bold);
-  textSize(30);
   text("?", width-40, 40);
 
-  drawGround();
+	drawGround();
 
   if (game == false && gameover == false) {
 
@@ -45,7 +49,7 @@ function runTimer() {
   setInterval(() => {
     if (time > 0) {
       time--;
-    } else if (time <= 0) {
+    } else if (time < 1) {
       gameover = true;
     }
   }, 1000);
